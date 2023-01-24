@@ -42,4 +42,4 @@ DBML grammar for [tree-sitter][].
 
 ## License
 
-[MIT](LICENSE.md)
+[MIT](LICENSE)
