@@ -1,0 +1,21 @@
+====================
+Enum Definition
+====================
+
+Enum status {
+    pending
+    success
+    failed
+    postponed
+}
+
+---
+
+(source_file
+    (enum_definition
+        (identifier)
+        (enum_block
+            (text)
+            (text)
+            (text)
+            (text))))

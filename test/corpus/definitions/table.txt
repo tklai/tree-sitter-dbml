@@ -1,0 +1,69 @@
+====================
+Table Definition
+====================
+
+Table people {
+    id int [pk]
+    name varchar
+    email varchar(255) [unique]
+    date_of_birth date
+    created_at timestamp
+    updated_at timestamp
+}
+
+---
+
+(source_file
+    (table_definition
+        name: (identifier)
+        definition_block: (block
+            (column_definition
+                column_name: (identifier)
+                data_type: (data_type
+                    (identifier)
+                )
+                modifiers: (modifiers
+                    modifier: (modifier
+                        name: (word)
+                    )
+                )
+            )
+            (column_definition
+                column_name: (identifier)
+                data_type: (data_type
+                    (identifier)
+                )
+            )
+            (column_definition
+                column_name: (identifier)
+                data_type: (data_type
+                    (identifier)
+                    (number)
+                )
+                modifiers: (modifiers
+                    modifier: (modifier
+                        name: (word)
+                    )
+                )
+            )
+            (column_definition
+                column_name: (identifier)
+                data_type: (data_type
+                    (identifier)
+                )
+            )
+            (column_definition
+                column_name: (identifier)
+                data_type: (data_type
+                    (identifier)
+                )
+            )
+            (column_definition
+                column_name: (identifier)
+                data_type: (data_type
+                    (identifier)
+                )
+            )
+        )
+    )
+)

@@ -1,0 +1,23 @@
+====================
+Table Group Definition
+====================
+
+TableGroup access_control {
+    users
+    roles
+    permissions
+    user_has_roles
+    role_has_permissions
+}
+
+---
+
+(source_file
+    (table_group_definition
+        (identifier)
+        (table_group_block
+            (text)
+            (text)
+            (text)
+            (text)
+            (text))))
