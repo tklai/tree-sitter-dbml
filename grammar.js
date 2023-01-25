@@ -1,143 +1,96 @@
 module.exports = grammar({
   name: "dbml",
 
-  extras: ($) => [
-    $.comment,
-    /\s/,
-  ],
+  extras: ($) => [$.comment, /\s/],
 
   rules: {
     source_file: ($) => repeat($._definition),
-
     identifier: (_$) => /[a-z0-9_]+/,
-
-    number: (_$) => /\d+/,
-
-    word: (_$) => /\w+/,
-
+    number: ($) => /\d+/,
+    word: ($) => /\w+/,
     text: ($) => seq(/.+/, $._line_break),
-
     string: ($) => /[']{1}.*[']{1}/,
 
-    comment: ($) => token(choice(
-      seq("//", /[^\r?\n]*/),
-      seq('/*', /[^*]*/, '*/'),
-    )),
+    comment: ($) =>
+      token(choice(seq("//", /[^\r?\n]*/), seq("/*", /[^*]*/, "*/"))),
 
-    _line_break: (_$) => /[\?\r?\n]/,
-    
-    _definition: ($) => choice(
-      $.project_definition,
-      $.table_definition,
-      $.table_group_definition,
-      $.enum_definition,
-    ),
+    _line_break: ($) => /[\?\r?\n]/,
 
-    modifiers: ($) => seq(
-      '[',
-      field('modifier', repeat(choice(
-        $.modifier,
-      ))),
-      optional(','),
-      ']',
-    ),
+    _definition: ($) =>
+      choice(
+        $.project_definition,
+        $.table_definition,
+        $.table_group_definition,
+        $.enum_definition
+      ),
 
-    modifier: ($) => seq(
-      field('name', $.word),
-      optional(seq(
-        ":",
-        field('value', $.word),
-      )),
-    ),
+    modifiers: ($) =>
+      seq(
+        "[",
+        field("modifier", repeat(choice($.modifier))),
+        optional(","),
+        "]"
+      ),
 
-    project_definition: ($) => seq(
-      "Project",
-      field("name", $.identifier),
-      $.project_block,
-    ),
+    modifier: ($) =>
+      seq(field("name", $.word), optional(seq(":", field("value", $.word)))),
 
-    project_block: ($) => seq(
-      "{",
-      repeat(choice($.keypair, $.note_string)),
-      "}",
-    ),
+    project_definition: ($) =>
+      seq("Project", field("name", $.identifier), $.project_block),
 
-    keypair: ($) => choice(
-      seq(field('key', $.identifier), ":", field('value', $.string), $._line_break),
-    ),
+    project_block: ($) =>
+      seq("{", repeat(choice($.keypair, $.note_string)), "}"),
+
+    keypair: ($) =>
+      choice(
+        seq(
+          field("key", $.identifier),
+          ":",
+          field("value", $.string),
+          $._line_break
+        )
+      ),
 
     note_string: ($) => seq("Note", ":", $.string, $._line_break),
 
-    column_definition: ($) => seq(
-      field('column_name', $.identifier),
-      field('data_type', $.data_type),
-      field('modifiers', optional($.modifiers)),
-      $._line_break,
-    ),
+    column_definition: ($) =>
+      seq(
+        field("column_name", $.identifier),
+        field("data_type", $.data_type),
+        field("modifiers", optional($.modifiers)),
+        $._line_break
+      ),
 
-    table_definition: ($) => seq(
-      "Table",
-      field('name', $.identifier),
-      optional(seq(
-        'as',
-        field('alias', $.word),
-      )),
-      field('definition_block', $.block),
-    ),
+    table_definition: ($) =>
+      seq(
+        "Table",
+        field("name", $.identifier),
+        optional(seq("as", field("alias", $.word))),
+        field("definition_block", $.block)
+      ),
 
-    table_group_definition: ($) => seq(
-      "TableGroup",
-      field('name', $.identifier),
-      $.table_group_block,
-    ),
+    table_group_definition: ($) =>
+      seq("TableGroup", field("name", $.identifier), $.table_group_block),
 
-    table_group_block: ($) => seq(
-      "{",
-        repeat(field('table_name', $.text)),
-      "}",
-    ),
-
+    table_group_block: ($) =>
+      seq("{", repeat(field("table_name", $.text)), "}"),
 
     data_type: ($) =>
       seq(
         $.identifier,
         // length
-        optional(
-          seq(
-            "(",
-            $.number,
-            ")",
-          ),
-        ),
+        optional(seq("(", $.number, ")"))
       ),
 
-    enum_definition: ($) => seq(
-      "Enum",
-      field('enum_name', $.identifier),
-      $.enum_block,
-    ),
+    enum_definition: ($) =>
+      seq("Enum", field("enum_name", $.identifier), $.enum_block),
 
-    enum_block: ($) => seq(
-      "{",
-      repeat(field('constant', $.text)),
-      "}",
-    ),
+    enum_block: ($) => seq("{", repeat(field("constant", $.text)), "}"),
 
-    block: ($) => seq(
-      "{",
-      choice(
-        repeat($._statement),
-      ),
-      "}",
-    ),
+    block: ($) => seq("{", choice(repeat($._statement)), "}"),
 
-    _statement: ($) => choice(
-      $.column_definition,
-    ),
+    _statement: ($) => choice($.column_definition),
 
-    _expression: ($) => choice(
-      $.identifier,
-      $.number,
-    ),
+    _expression: ($) => choice($.identifier, $.number),
   },
 });
