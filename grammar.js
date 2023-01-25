@@ -51,7 +51,10 @@ module.exports = grammar({
         )
       ),
 
-    note_string: ($) => seq("Note", ":", $.string, $._line_break),
+    note_string: ($) =>
+      seq("Note", ":", choice($.string, $.multi_line_string), $._line_break),
+
+    multi_line_string: ($) => /[']{3}[^']+[']{3}/,
 
     column_definition: ($) =>
       seq(

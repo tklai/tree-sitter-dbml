@@ -188,6 +188,10 @@
       "required": true,
       "types": [
         {
+          "type": "multi_line_string",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         }
@@ -417,6 +421,10 @@
   },
   {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "multi_line_string",
     "named": true
   },
   {

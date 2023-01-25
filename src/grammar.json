@@ -275,14 +275,27 @@
           "value": ":"
         },
         {
-          "type": "SYMBOL",
-          "name": "string"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "multi_line_string"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
           "name": "_line_break"
         }
       ]
+    },
+    "multi_line_string": {
+      "type": "PATTERN",
+      "value": "[']{3}[^']+[']{3}"
     },
     "column_definition": {
       "type": "SEQ",
