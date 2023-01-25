@@ -10,27 +10,27 @@ DBML grammar for [tree-sitter][].
 
 ## TODO List
 
-- [] Project Definition
-- [] Schema Definition
-- [] Table Definition
+- [ ] Project Definition
+- [ ] Schema Definition
+- [ ] Table Definition
     - [x] Basic
-    - [] Alias
-    - [] Column Definition
+    - [x] Alias
+    - [ ] Column Definition
         - [x] Column name
         - [x] Data Type
             - [x] Type only
             - [x] With data size
-        - [] Column Settings
-        - [] Relationships
-    - [] Indexes / Indices
-- [] Comments
+        - [ ] Column Settings
+        - [ ] Relationships
+    - [ ] Indexes / Indices
+- [ ] Comments
     - [x] Single line
-    - [] Multiple lines
-- [] Notes
-    - [] Project
-    - [] Table
-    - [] Column
-- [] Multi-line String
+    - [ ] Multiple lines
+- [ ] Notes
+    - [ ] Project
+    - [ ] Table
+    - [ ] Column
+- [ ] Multi-line String
 - [x] Table Groups
 - [x] Enums
 

@@ -67,3 +67,40 @@ Table people {
         )
     )
 )
+
+====================
+Table Alias
+====================
+
+Table people as P {
+    id int [pk]
+    name varchar
+}
+
+---
+
+(source_file
+    (table_definition
+        name: (identifier)
+        alias: (word)
+        definition_block: (block
+            (column_definition
+                column_name: (identifier)
+                data_type: (data_type
+                    (identifier)
+                )
+                modifiers: (modifiers
+                    modifier: (modifier
+                        name: (word)
+                    )
+                )
+            )
+            (column_definition
+                column_name: (identifier)
+                data_type: (data_type
+                    (identifier)
+                )
+            )
+        )
+    )
+)

@@ -195,6 +195,16 @@
     "type": "table_definition",
     "named": true,
     "fields": {
+      "alias": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "word",
+            "named": true
+          }
+        ]
+      },
       "definition_block": {
         "multiple": false,
         "required": true,
@@ -302,6 +312,10 @@
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "as",
     "named": false
   },
   {
