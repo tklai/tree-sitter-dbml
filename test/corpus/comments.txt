@@ -32,6 +32,13 @@ Project project_name {
     /*
         Single line in multi-line comment
     */
+
+    /*
+    */
+
+    /*
+
+    */
 }
 
 ---
@@ -41,6 +48,8 @@ Project project_name {
     (project_definition
         name: (identifier)
         (project_block
+            (comment)
+            (comment)
             (comment)
         )
     )
