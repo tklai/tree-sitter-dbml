@@ -1,0 +1,31 @@
+====================
+Project Definition
+====================
+
+Project project_name {
+  database_type: 'PostgreSQL'
+  charset: 'utf8mb4'
+  collation: 'utf8mb4_0900_ai_ci'
+
+  Note: 'Description of the project'
+}
+
+---
+
+(source_file
+    (project_definition
+        name: (identifier)
+        (project_block
+            (keypair
+                key: (identifier)
+                value: (string))
+            (keypair
+                key: (identifier)
+                value: (string))
+            (keypair
+                key: (identifier)
+                value: (string))
+            (note_string (string))
+        )
+    )
+)

@@ -17,6 +17,8 @@ module.exports = grammar({
 
     text: ($) => seq(/.+/, $._line_break),
 
+    string: ($) => /[']{1}.*[']{1}/,
+
     comment: ($) => seq(
       token("//"),
       $.text,
@@ -25,6 +27,7 @@ module.exports = grammar({
     _line_break: (_$) => /[\?\r?\n]/,
     
     _definition: ($) => choice(
+      $.project_definition,
       $.table_definition,
       $.table_group_definition,
       $.enum_definition,
@@ -46,6 +49,24 @@ module.exports = grammar({
         field('value', $.word),
       )),
     ),
+
+    project_definition: ($) => seq(
+      "Project",
+      field("name", $.identifier),
+      $.project_block,
+    ),
+
+    project_block: ($) => seq(
+      "{",
+      repeat(choice($.keypair, $.note_string)),
+      "}",
+    ),
+
+    keypair: ($) => choice(
+      seq(field('key', $.identifier), ":", field('value', $.string), $._line_break),
+    ),
+
+    note_string: ($) => seq("Note", ":", $.string, $._line_break),
 
     column_definition: ($) => seq(
       field('column_name', $.identifier),

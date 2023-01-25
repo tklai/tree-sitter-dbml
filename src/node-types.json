@@ -127,6 +127,32 @@
     }
   },
   {
+    "type": "keypair",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "modifier",
     "named": true,
     "fields": {
@@ -169,6 +195,66 @@
     }
   },
   {
+    "type": "note_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "project_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "keypair",
+          "named": true
+        },
+        {
+          "type": "note_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "project_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "project_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -178,6 +264,10 @@
       "types": [
         {
           "type": "enum_definition",
+          "named": true
+        },
+        {
+          "type": "project_definition",
           "named": true
         },
         {
@@ -299,6 +389,14 @@
     "named": false
   },
   {
+    "type": "Note",
+    "named": false
+  },
+  {
+    "type": "Project",
+    "named": false
+  },
+  {
     "type": "Table",
     "named": false
   },
@@ -324,6 +422,10 @@
   },
   {
     "type": "number",
+    "named": true
+  },
+  {
+    "type": "string",
     "named": true
   },
   {
