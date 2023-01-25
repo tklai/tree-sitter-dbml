@@ -64,6 +64,7 @@ module.exports = grammar({
     table_definition: ($) =>
       seq(
         "Table",
+        optional(seq(field("schema_name", $.identifier), ".")),
         field("name", $.identifier),
         optional(seq("as", field("alias", $.word))),
         field("definition_block", $.block)

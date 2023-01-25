@@ -11,7 +11,7 @@ DBML grammar for [tree-sitter][].
 ## TODO List
 
 - [x] Project Definition
-- [ ] Schema Definition
+- [x] Schema Definition
 - [ ] Table Definition
     - [x] Basic
     - [x] Alias

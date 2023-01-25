@@ -104,3 +104,25 @@ Table people as P {
         )
     )
 )
+
+====================
+Table with schema name
+====================
+
+Table default.people as P {
+    //
+}
+
+---
+
+(source_file
+    (table_definition
+        schema_name: (identifier)
+        name: (identifier)
+        alias: (word)
+        definition_block: (block
+            (comment)
+        )
+    )
+)
+
