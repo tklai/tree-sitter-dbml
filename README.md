@@ -23,9 +23,9 @@ DBML grammar for [tree-sitter][].
         - [ ] Column Settings
         - [ ] Relationships
     - [ ] Indexes / Indices
-- [ ] Comments
+- [x] Comments
     - [x] Single line
-    - [ ] Multiple lines
+    - [x] Multiple lines
 - [ ] Notes
     - [ ] Project
     - [ ] Table

@@ -1,0 +1,47 @@
+====================
+Single-line Comments
+====================
+
+// Example Project
+Project project_name {
+    //
+}
+
+---
+
+(source_file
+    (comment)
+    (project_definition
+        name: (identifier)
+        (project_block
+            (comment)
+        )
+    )
+)
+
+====================
+Multi-line Comments
+====================
+
+/*
+    This is an example project
+    and this is a multi-line
+    comment.
+*/
+Project project_name {
+    /*
+        Single line in multi-line comment
+    */
+}
+
+---
+
+(source_file
+    (comment)
+    (project_definition
+        name: (identifier)
+        (project_block
+            (comment)
+        )
+    )
+)

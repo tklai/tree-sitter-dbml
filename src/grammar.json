@@ -38,20 +38,42 @@
       "value": "[']{1}.*[']{1}"
     },
     "comment": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "//"
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "//"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^\\r?\\n]?"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "/*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^*]*"
+              },
+              {
+                "type": "STRING",
+                "value": "*/"
+              }
+            ]
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "text"
-        }
-      ]
+        ]
+      }
     },
     "_line_break": {
       "type": "PATTERN",

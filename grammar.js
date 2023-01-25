@@ -19,10 +19,10 @@ module.exports = grammar({
 
     string: ($) => /[']{1}.*[']{1}/,
 
-    comment: ($) => seq(
-      token("//"),
-      $.text,
-    ),
+    comment: ($) => token(choice(
+      seq("//", /[^\r?\n]*/),
+      seq('/*', /[^*]*/, '*/'),
+    )),
 
     _line_break: (_$) => /[\?\r?\n]/,
     
