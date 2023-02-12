@@ -9,7 +9,10 @@ module.exports = grammar({
     number: ($) => /\d+/,
     word: ($) => /\w+/,
     text: ($) => seq(/.+/, $._line_break),
-    string: ($) => /[']{1}.*[']{1}/,
+    string: ($) => choice(
+      /[']{1}.*[']{1}/,
+      /["]{1}.*["]{1}/,
+    ),
 
     comment: ($) =>
       token(choice(seq("//", /[^\r?\n]*/), seq("/*", /[^*]*/, "*/"))),
@@ -77,14 +80,16 @@ module.exports = grammar({
       seq("TableGroup", field("name", $.identifier), $.table_group_block),
 
     table_group_block: ($) =>
-      seq("{", repeat(field("table_name", $.text)), "}"),
+      seq("{", repeat(field("table_name", $.identifier)), "}"),
 
-    data_type: ($) =>
+    data_type: ($) => choice(
       seq(
         $.identifier,
         // length
         optional(seq("(", $.number, ")"))
       ),
+      $.string,
+    ),
 
     enum_definition: ($) =>
       seq("Enum", field("enum_name", $.identifier), $.enum_block),

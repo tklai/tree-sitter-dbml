@@ -34,8 +34,17 @@
       ]
     },
     "string": {
-      "type": "PATTERN",
-      "value": "[']{1}.*[']{1}"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[']{1}.*[']{1}"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[\"]{1}.*[\"]{1}"
+        }
+      ]
     },
     "comment": {
       "type": "TOKEN",
@@ -448,7 +457,7 @@
             "name": "table_name",
             "content": {
               "type": "SYMBOL",
-              "name": "text"
+              "name": "identifier"
             }
           }
         },
@@ -459,36 +468,45 @@
       ]
     },
     "data_type": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "("
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "number"
-                },
-                {
-                  "type": "STRING",
-                  "value": ")"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "identifier"
             },
             {
-              "type": "BLANK"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "("
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "number"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": ")"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
         }
       ]
     },

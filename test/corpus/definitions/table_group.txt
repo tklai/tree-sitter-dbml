@@ -16,8 +16,8 @@ TableGroup access_control {
     (table_group_definition
         (identifier)
         (table_group_block
-            (text)
-            (text)
-            (text)
-            (text)
-            (text))))
+            (identifier)
+            (identifier)
+            (identifier)
+            (identifier)
+            (identifier))))

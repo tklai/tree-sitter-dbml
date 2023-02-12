@@ -65,6 +65,10 @@
         {
           "type": "number",
           "named": true
+        },
+        {
+          "type": "string",
+          "named": true
         }
       ]
     }
@@ -271,6 +275,11 @@
     }
   },
   {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "table_definition",
     "named": true,
     "fields": {
@@ -325,7 +334,7 @@
         "required": false,
         "types": [
           {
-            "type": "text",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -429,10 +438,6 @@
   },
   {
     "type": "number",
-    "named": true
-  },
-  {
-    "type": "string",
     "named": true
   },
   {
